@@ -24,3 +24,4 @@ ng new nome-applicazione
 ## Struttura dell'applicazione
 - .vscode: cartella nascosta usata di Visula Studio code (interesse zero)
 - node_modules: è sempre presente nei progetti node, è gestita da npm, non contiene codice modificabile **(NON E' NECESSARIO, ANZI FORTEMENTE SCONSIGLIABILE SALVARLA NEL REPOSITORY REMOTO DI GITHUB (PUSHARLA))**. In qualsiasi momento è possibile ricostruirla con il comando `npm install`.
+- public: nelkl directory public vanno inseriti media (immagini, suoni, sfondi, filmati...) che verranno utilizzati nella webapp
