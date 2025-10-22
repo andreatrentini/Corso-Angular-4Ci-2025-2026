@@ -74,3 +74,28 @@ Per avviare il server di sviluppo:
 ```bash
 ng serve
 ```
+
+## Applicazione corso-angular
+### Creazione
+```bash
+ng new corso-angular
+```
+
+### Configurazione
+Aggiungiamo il package bootstrap per gestire l'estetica e rendere la nostra app responsive
+```bash
+cd corso-angular
+npm install bootstrap
+```
+> ATTENZIONE: rendere con cd... la directory del progetto directory corrente
+
+Modifichiamo il file angular.json aggiungendo il file css e la libreria js di bootstrap
+```json
+"styles": [
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+          ],
+"scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+           ]
+```
