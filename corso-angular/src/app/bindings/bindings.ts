@@ -20,9 +20,15 @@ export class Bindings implements OnInit{
   colori: string[] = ['red', 'green', 'blue', 'yellow'];
   colore: WritableSignal<string> = signal(this.colori[0]);
   
+  classi: string = 'border lead';
+  backGround: WritableSignal<boolean> = signal(true);
+
   ngOnInit(): void {
     interval(1000).subscribe(() => {
       this.cambiaColore();
+    })
+    interval(500).subscribe(() => {
+      this.backGround.update(valoreAttuale => !valoreAttuale);
     })
   }
 
