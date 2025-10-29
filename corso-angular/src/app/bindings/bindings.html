@@ -43,3 +43,63 @@
         </p>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <p class="lead">
+            Contatore: {{contatore()}}
+        </p>
+    </div>
+    <div class="col-sm-3">
+        <p>
+            <button class="btn btn-success" (click)="incrementa()">Aumenta valore</button>
+        </p>
+    </div>
+    <div class="col-sm-3">
+        <p>
+            <button class="btn btn-danger" (click)="decrementa()">Diminuisci valore</button>
+        </p>
+    </div>
+</div>
+<h3>Property binding</h3>
+<p>Una property corrisponde ad un attributo di un elemento HTML.
+    Ad esempio il tag img prevede un attributo obbligatorio: src="nome dell'immagine".
+    src dal punto di vista di angular è una property.
+</p>
+<p>Per usare property binding racchiudo il nome dell'attributo fra parentesi quadre e come
+    valore assegno un'espressione typescript: il nome di una variabile, il valore di un signal,
+    può anche essere una espressione che restituisce vero/falso.
+</p>
+<div>
+    <p>Inserimento di un'immagine statica con linguaggio HTML.</p>
+    <img class="img-fluid img-thumbnail" src="/bicicletta.jpg">
+    <p>Inserimento di una pagina in modo dinamico, con property binding.</p>
+    <img class="img-fluid img-thumbnail" [src]="immagini[1]">
+</div>
+<div class="row mt-5">
+    <div class="col-sm-3">
+        <div>
+            <button class="btn btn-primary" [disabled]="indiceImmagine()==0" 
+            (click)="precedente()">Precedente</button>
+        </div>        
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <img class="img-fluid img-thumbnail" [src]="immagini[indiceImmagine()]">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            <button class="btn btn-primary" [disabled]="indiceImmagine() == immagini.length - 1"
+             (click)="successivo()">Successivo</button>
+        </div>        
+    </div>
+</div>
+<h3>Style binding</h3>
+<p>Come assegnare uno stile (css) ad un elemento HTML in modo dinamico.</p>
+<p>Metto il style.proprietà fra parentesi quadre ed assegno come valore un'espressione typescript</p>
+<p style="color:blueviolet">Questo testo è viola.</p>
+<p [style.color]="colore()">Questo testo cambia di colore in modo casuale.</p>
+<h3>Class binding</h3>
+<p>Si mette l'attributo class fra parentesi quadre e si assegna come volore un'espressione typescript.</p>
+<p>Può essere usato nella modalità [class]="elenco di classi", oppure [class.nomeClasse]="boolean".</p>

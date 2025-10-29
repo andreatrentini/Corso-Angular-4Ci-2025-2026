@@ -1,5 +1,5 @@
-import { Component, signal, WritableSignal } from '@angular/core';
-import { withIncrementalHydration } from '@angular/platform-browser';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-bindings',
@@ -7,13 +7,24 @@ import { withIncrementalHydration } from '@angular/platform-browser';
   templateUrl: './bindings.html',
   styleUrl: './bindings.css'
 })
-export class Bindings {
+export class Bindings implements OnInit{
   // Dichiarazione delle variabili prevede: nome: tipo = valore iniziale
   studente: WritableSignal<string> = signal("Andrea Trentini");
-  contatore: WritableSignal<number> = signal(0);
+  contatore: WritableSignal<number> = signal(0);  
 
+  // Property binding
   immagini: string[] = ['/bicicletta.jpg', '/ciao.jpg', '/cinquecento.jpg', '/aereo.jpg'];
   indiceImmagine: WritableSignal<number> = signal(0);
+
+  // Style binding
+  colori: string[] = ['red', 'green', 'blue', 'yellow'];
+  colore: WritableSignal<string> = signal(this.colori[0]);
+  
+  ngOnInit(): void {
+    interval(1000).subscribe(() => {
+      this.cambiaColore();
+    })
+  }
 
   cambiaNome(): void {
     // Corpo del metodo
@@ -33,6 +44,18 @@ export class Bindings {
 
   decrementa(): void {
     this.contatore.update(valorePrecedente => valorePrecedente - 1);
+  }
+
+  precedente(): void {
+    this.indiceImmagine.update(valoreAttuale => valoreAttuale - 1);
+  }
+
+  successivo(): void {
+    this.indiceImmagine.update(valoreAttuale => valoreAttuale + 1);
+  }
+
+  cambiaColore(): void {    
+    this.colore.set(this.colori[Math.round(Math.random() * 3)]);
   }
 
 }
