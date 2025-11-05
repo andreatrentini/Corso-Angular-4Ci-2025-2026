@@ -60,7 +60,7 @@
         <div>
             <div class="mb-3">
                 <label for="inName" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="inName" placeholder="Aggiungi un nome..." #inName>
+                <input type="text" class="form-control" placeholder="Aggiungi un nome..." #inName>
             </div>
         </div>
     </div>
@@ -70,10 +70,28 @@
         </div>
     </div>
 </div>
-<div>
-    <ul>
+<div class="mt-5 mb-5">
+    <div>
         @for(nome of nomi(); track nome) {
-            <li>{{nome}}</li>
+            @if(indiceModifica() === $index) {
+                <!-- Visualizza il blocco per la modidifca -->
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item flex-fill">
+                        <input class="form-control" type="text" [value]="nome" #inNuovoNome>
+                    </li>
+                    <li class="list-group-item"><button class="btn btn-primary" (click)="salva(inNuovoNome.value ,$index)">Salva</button></li>
+                    <li class="list-group-item"><button class="btn btn-secondary" (click)="annulla()">Annulla</button></li>
+                </ul>
+            }
+            @else {
+                <!-- Visualizza il blocco per modificare il nome -->
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item flex-fill">{{nome}}</li>
+                    <li class="list-group-item"><button class="btn btn-danger" (click)="elimina($index)">Elimina</button></li>
+                    <li class="list-group-item"><button class="btn btn-success" (click)="attivaModifica($index)">Modifica</button></li>
+                </ul>
+            }
         }
-    </ul>
+    </div>
 </div>
+    

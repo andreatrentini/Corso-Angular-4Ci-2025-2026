@@ -11,6 +11,7 @@ export class StructuralDirectives {
   visualizza: WritableSignal<boolean> = signal(false);
   immagineOTesto: WritableSignal<string> = signal('immagine');
   nomi: WritableSignal<string[]> = signal(['Andrea', 'Gianni', 'Luca', 'Federico']);
+  indiceModifica: WritableSignal<number> = signal(-1);
 
   toggleVisualizza(): void {
     this.visualizza.update(current => !current);
@@ -25,6 +26,35 @@ export class StructuralDirectives {
   }
 
   aggiungiNome(nome: any): void {
-    console.log(nome.value);
+    //console.log(nome.value);
+    this.nomi.update(current => [...current, nome.value]);
+/*     this.nomi.update(current => {
+      let tmp = current;
+      tmp.push(nome.value);
+      return tmp;
+    }) */
+  }
+
+  elimina(indice: number): void {
+    this.nomi.update(current => {
+      current.splice(indice, 1);
+      return current;
+    });
+  }
+
+  attivaModifica(indice: number): void {
+    this.indiceModifica.set(indice);
+  }
+
+  annulla(): void {
+    this.indiceModifica.set(-1);
+  }
+
+  salva(nome: string, indice: number) {
+    this.nomi.update(current => {
+      current[indice] = nome;
+      return current;
+    });
+    this.indiceModifica.set(-1);
   }
 }
