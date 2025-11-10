@@ -94,4 +94,51 @@
         }
     </div>
 </div>
-    
+<div>
+    <h2 class="display-4">La direttiva switch</h2>
+    <p>Switch consente di inserire blocchi diversi in base al valore di una variabile.
+        Come if, ma possono esserci tante alternative.
+    </p>
+</div>    
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary" (click)="impostaStudente()">Studente</button>
+        <button class="btn btn-primary" (click)="impostaDocente()">Docente</button>
+        <button class="btn btn-primary" (click)="impostaGenitore()">Genitore</button>
+        <button class="btn btn-primary" (click)="impostaAltro()">Altro</button>
+    </div>
+</div>
+@switch (tipoUtente()) {
+    @case ('studente') {
+        <div>
+            <h1 class="display-4">Studente</h1>
+        </div>
+        <div>
+            <img src="/ciao.jpg" class="img-fluid">
+        </div>
+        <!-- Inserisco tutto il codice HTML da visualizzare se tipoUtente = studente -->
+    }
+    @case ('docente') {
+        <div>
+            <h1 class="display-4">Docente</h1>
+        </div>
+        <!-- Inserisco tutto il codice HTML da visualizzare se tipoUtente = docente -->
+    }
+    @case ('genitore') {
+        <div>
+            <h1 class="display-4">Genitore</h1>
+        </div>
+        <div>
+            <p>Segli il nome del figlio...</p>
+        </div>
+        <!-- Inserisco tutto il codice HTML da visualizzare se tipoUtente = docente -->
+    }
+    @default {
+        <div>
+            <h1 class="display-4">Tutti gli altri casi...</h1>
+        </div>
+    }
+
+
+
+}
