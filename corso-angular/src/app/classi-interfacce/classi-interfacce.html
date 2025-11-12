@@ -3,25 +3,40 @@
 </h1>
 <div class="my-5">
     <p><u>Esempio 1</u></p>
-    <div class="my-5">
-        <div class="row">
-            <div class="col-sm-5">
-                <div>
-                    <input type="text" class="form-control" #inNomeClasse>
+    @if(!classe()) {
+        <div class="my-5">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div>
+                        <input type="text" class="form-control" #inNomeClasse>
+                    </div>
                 </div>
+                <div class="col-sm-5">
+                    <div>
+                        <input type="text" class="form-control" #inAnnoScolastico>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div>
+                        <button class="btn btn-primary" (click)="creaClasse(inNomeClasse.value, inAnnoScolastico.value)">Crea classe</button>
+                    </div>
+                </div>            
             </div>
-            <div class="col-sm-5">
-                <div>
-                    <input type="text" class="form-control" #inAnnoScolastico>
-                </div>
+        </div>    
+    }
+    @else {
+        <div class="row my-3">
+            <div class="col-sm-6">
+                <h4 class="display-6">Classe: {{classe()?.nomeClasse}}</h4>
             </div>
-            <div class="col-sm-2">
-                <div>
-                    <button class="btn btn-primary" (click)="creaClasse(inNomeClasse.value, inAnnoScolastico.value)">Crea classe</button>
-                </div>
-            </div>            
+            <div class="col-sm-6">
+                <h4 class="display-6">Anno scolastico: {{classe()?.annoScolastico}}</h4>
+            </div>
         </div>
-    </div>    
+        <div>
+            <h4 class="display-6">Studenti</h4>
+        </div>
+    }
     <div [innerHTML]="classe()?.toTable()"></div>
     
 </div>
