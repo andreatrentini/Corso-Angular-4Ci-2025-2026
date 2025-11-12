@@ -4,24 +4,23 @@ export class Studente extends Persona {
 
     // L'attributo classe differenzia uno Studente da una Persona
 
-    private _classe: string;
+    private _classe: string = '';
     
     constructor(id: number, nome: string, cognome: string, sesso: string, classe: string) {
         // super richiama il costruttore della classe padre
-        super(id, nome, cognome, sesso);
-        this._classe = '';
-        this.cambiaClasse(classe);
+        super(id, nome, cognome, sesso);        
+        this.classe = classe;
     }
 
     public get classe(): string {
         return this._classe;
     }
 
-    public cambiaClasse(value: string) {
+    public set classe(value: string) {
         // Controllo se il nome della classe è corretto
         // 4Bi
         // Suggerimento: usate le regex
-        const regex = /^[1-5][ABCDEQ][iame]?$/;
+        const regex = /^[1-5][A-S][iame]?$/;
         /*
         ^ (Ancora): Indica l'inizio della stringa.
         \d (Digit): corrisponde a un singolo carattere che sia '1', '2', '3', '4', o '5'..
@@ -38,6 +37,10 @@ export class Studente extends Persona {
         else {            
             throw new Error('Nome della classe errato.');
         }
+    }
+
+    public override toTable(): string {
+        return '<tr><td scope="row">' + this.id + '</td><td>' + this.nome + '</td><td>' + this.cognome + '</td><td>' + this.sesso + '</td><td>' + this.classe + '</td></tr>'; 
     }
 
 }
