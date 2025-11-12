@@ -8,12 +8,12 @@
             <div class="row">
                 <div class="col-sm-5">
                     <div>
-                        <input type="text" class="form-control" #inNomeClasse>
+                        <input type="text" class="form-control" #inNomeClasse placeholder="Nome della classe (es. 4Bi)">
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div>
-                        <input type="text" class="form-control" #inAnnoScolastico>
+                        <input type="text" class="form-control" #inAnnoScolastico placeholder="Anno scolastico (Formato AAAA/AAAA)">
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -27,10 +27,10 @@
     @else {
         <div class="row my-3">
             <div class="col-sm-6">
-                <h4 class="display-6">Classe: {{classe()?.nomeClasse}}</h4>
+                <h4 class="lead">Classe: {{classe()?.nomeClasse}}</h4>
             </div>
             <div class="col-sm-6">
-                <h4 class="display-6">Anno scolastico: {{classe()?.annoScolastico}}</h4>
+                <h4 class="lead">Anno scolastico: {{classe()?.annoScolastico}}</h4>
             </div>
         </div>
         <div>
