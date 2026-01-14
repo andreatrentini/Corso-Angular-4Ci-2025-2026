@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Menu } from './menu/menu';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
+import { SpotifyService } from './spotify-service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,12 @@ import { Footer } from './footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  
+export class App implements OnInit {
+
+  // Inietto il servizio SpotifyService nel componente
+  spotifyService: SpotifyService = inject(SpotifyService);
+
+  ngOnInit(): void {
+    this.spotifyService.getToken();
+  }
 }
