@@ -9,3 +9,12 @@ grant_type=client_credentials&client_id=fceb1e53687448bbab8abb82fec80252&client_
 
 GET https://api.spotify.com/v1/search?q=promessa&type=artist
 Authorization: Bearer BQB5sGe6YL90z2Vv0cTh2qR-Qw6RsJWYN33v9do3vm7yMAzvjEiUjr8Lb71tt2L7ncDahE80RQfjfZHKbHhtkla7okn7Nx8lP-wOMwt-Wxev1OkZMTKHlLRyKZNVMV_v4BIYS8YsoZg
+###
+
+GET https://api.spotify.com/v1/artists/5l4nhyz8876RhgE2d18h65
+Authorization: Bearer BQAi7J9UrqE1R1kxiEBdiXPfZAm18M7blBjl0wCFdRefGLDWT4ykAGhs2CR3qnNA5OagUEd546q3-f0EPlx4F-cUx20UgrFOqWi7QNwnLsX1Dftqc7mM-gJoKz4-FOxTb1uPZ_xCKNg
+###
+
+GET https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/albums
+Authorization: Bearer BQCURgly-op0AHrErVfMfoSBjvpMWE48yhD04XMXIRWqHBX4eNUYU33Y5Z3N9l_m2FD-UAo5XhnH5yVFckk6oK7sH4imDhV56e4ckaQ-wm2yOkO8nF9TY8bYAIg-X4rIptfzYRtbueA",
+

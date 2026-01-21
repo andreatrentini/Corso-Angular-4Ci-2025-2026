@@ -3,6 +3,7 @@ import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { IToken } from './interfaces/i-token';
 import { interval, Observable } from 'rxjs';
 import { ISearchArtists } from './interfaces/i-artists-search';
+import { IArtist } from './interfaces/i-artist';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class SpotifyService {
   private client_secret: string = '973654b2da524add8b97c9d5ee4bd6bb';
   private urls: string[] = [
     'https://accounts.spotify.com/api/token',
-    'https://api.spotify.com/v1/search?q='
+    'https://api.spotify.com/v1/search?q=',
+    'https://api.spotify.com/v1/artists/'
   ]
 
   private _token!: IToken;
@@ -53,6 +55,14 @@ export class SpotifyService {
     .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
 
     return this.httpClient.get<ISearchArtists>(url, {headers: httpHeader})
+  }
+
+  getArtist(id: string): Observable<IArtist> {
+    let url = `${this.urls[2]}/${id}`;
+    let httpHeader = new HttpHeaders()
+    .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
+
+    return this.httpClient.get<IArtist>(url, {headers: httpHeader})
   }
 
 }
