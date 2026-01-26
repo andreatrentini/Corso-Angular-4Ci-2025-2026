@@ -4,6 +4,8 @@ import { IToken } from './interfaces/i-token';
 import { interval, Observable } from 'rxjs';
 import { ISearchArtists } from './interfaces/i-artists-search';
 import { IArtist } from './interfaces/i-artist';
+import { IAlbum } from './interfaces/i-album';
+import { ITracks } from './interfaces/i-tracks';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,8 @@ export class SpotifyService {
   private urls: string[] = [
     'https://accounts.spotify.com/api/token',
     'https://api.spotify.com/v1/search?q=',
-    'https://api.spotify.com/v1/artists/'
+    'https://api.spotify.com/v1/artists/',
+    'https://api.spotify.com/v1/albums'
   ]
 
   private _token!: IToken;
@@ -52,17 +55,32 @@ export class SpotifyService {
   searchArtist(name: string): Observable<ISearchArtists> {
     let url = `${this.urls[1]}${name}&type=artist`;
     let httpHeader = new HttpHeaders()
-    .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
+      .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
 
-    return this.httpClient.get<ISearchArtists>(url, {headers: httpHeader})
+    return this.httpClient.get<ISearchArtists>(url, { headers: httpHeader })
   }
 
   getArtist(id: string): Observable<IArtist> {
     let url = `${this.urls[2]}/${id}`;
     let httpHeader = new HttpHeaders()
-    .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
+      .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
 
-    return this.httpClient.get<IArtist>(url, {headers: httpHeader})
+    return this.httpClient.get<IArtist>(url, { headers: httpHeader })
+  }
+
+  getAlbums(id: string): Observable<IAlbum> {
+    let url = `${this.urls[2]}/${id}/albums`;
+    let httpHeader = new HttpHeaders()
+      .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
+
+    return this.httpClient.get<IAlbum>(url, { headers: httpHeader })
+  }
+  getTracks(id: string): Observable<ITracks> {
+    let url = `${this.urls[3]}/${id}`;
+    let httpHeader = new HttpHeaders()
+      .set('Authorization', this._token.token_type + ' ' + this._token.access_token);
+
+    return this.httpClient.get<ITracks>(url, { headers: httpHeader })
   }
 
 }

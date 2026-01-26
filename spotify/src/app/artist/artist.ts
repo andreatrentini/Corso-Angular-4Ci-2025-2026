@@ -24,7 +24,9 @@ export class Artist implements OnInit {
       this.spotifyService.getArtist(id).subscribe((dati: IArtist) => {
         this.artist.set(dati);
       });
-      this.spotifyService.
+      this.spotifyService.getAlbums(id).subscribe((dati: IAlbum) => {
+        this.albums.set(dati);
+      })
     })
   }
 
