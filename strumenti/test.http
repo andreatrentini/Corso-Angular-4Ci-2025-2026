@@ -17,4 +17,15 @@ Authorization: Bearer BQAi7J9UrqE1R1kxiEBdiXPfZAm18M7blBjl0wCFdRefGLDWT4ykAGhs2C
 
 GET https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/albums
 Authorization: Bearer BQA4N9Tgbhb7Ske5MSuLel89avtxupSd3wiSaw_NMPBPwEobDNmmHMzn6BYGMdrPdd8qJRANt3OF5Pc5NmP7sLxVp2ZVFuXnmEV8L-KKBxuEwsWJhn9OW0D8AHtHV-sNmYVv9dD9Jls
+###
 
+GET https://dummyjson.com/users
+###
+
+POST https://dummyjson.com/user/login
+Content-Type: application/json
+
+{   
+    "username": "emilys",
+    "password": "emilyspass"
+}
