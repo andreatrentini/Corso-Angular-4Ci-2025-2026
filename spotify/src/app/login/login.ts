@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { form } from '@angular/forms/signals';
+import { Component, inject, Signal, signal } from '@angular/core';
+import { form, FormField, required } from '@angular/forms/signals';
+import { UsersService } from '../users-service';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [FormField],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -13,5 +14,16 @@ export class Login {
     password: ''
   });
 
-  loginForm = form(this.loginData);
+  usersService: UsersService = inject(UsersService);
+
+  loginError = this.usersService.loginError;
+
+  loginForm = form(this.loginData, (schemaPath) => {
+    required(schemaPath.username, {message: 'Username obbligatorio'});
+    required(schemaPath.password, {message: 'Username obbligatorio'});
+  });
+
+  login(): void {
+    this.usersService.login(this.loginData().username, this.loginData().password);
+  }
 }
