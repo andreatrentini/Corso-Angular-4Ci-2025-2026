@@ -1,20 +1,31 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="['/']">Spotify</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/search-artist']">Search artist</a>
-        </li>        
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']">Login</a>
-        </li>        
+          <a class="nav-link" [routerLink]="['/search-artist']" [class.disabled]="!isLogged() || !validToken()">Search
+            artist</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto me-4">
+        @if(!isLogged()) {
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/login']">Login</a>
+          </li>
+        }
+        @else {          
+          <li class="nav-item">
+            <button class="nav-link" (click)="logout()">Logout</button>
+          </li>
+        }
       </ul>
     </div>
   </div>

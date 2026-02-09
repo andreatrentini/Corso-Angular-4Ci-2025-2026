@@ -20,10 +20,11 @@ export class Login {
 
   loginForm = form(this.loginData, (schemaPath) => {
     required(schemaPath.username, {message: 'Username obbligatorio'});
-    required(schemaPath.password, {message: 'Username obbligatorio'});
+    required(schemaPath.password, {message: 'Password richiesta.'});
   });
 
-  login(): void {
+  login(eventData: any): void {
+    eventData.preventDefault();
     this.usersService.login(this.loginData().username, this.loginData().password);
   }
 }

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SpotifyService } from '../spotify-service';
+import { UsersService } from '../users-service';
 
 @Component({
   selector: 'app-menu',
@@ -8,5 +10,13 @@ import { RouterLink } from '@angular/router';
   styleUrl: './menu.css',
 })
 export class Menu {
+  spotifyService: SpotifyService = inject(SpotifyService);
+  userService: UsersService = inject(UsersService);
 
+  validToken = this.spotifyService.validToken;
+  isLogged = this.userService.isLogged;
+
+  logout(): void {
+    this.userService.logout();
+  }
 }
